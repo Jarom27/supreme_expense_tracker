@@ -3,8 +3,9 @@ def create_database():
     try:
         connection  = sqlite3.connect("tracker.db")
         cur = connection.cursor()
-        cur.execute("CREATE TABLE IF NOT EXISTS categoria(id_categoria PRIMARY KEY, name TEXT, expected_budget INTEGER)")
-        cur.execute("CREATE TABLE IF NOT EXISTS expenses(id INTEGER PRIMARY KEY,description TEXT,date DATE, id_categoria INTEGER, FOREIGN KEY(id_categoria) REFERENCES categoria(id_categoria))")
+        cur.execute("CREATE TABLE IF NOT EXISTS category(id_category INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, expected_budget INTEGER)")
+        cur.execute("CREATE TABLE IF NOT EXISTS expenses(id INTEGER PRIMARY KEY AUTOINCREMENT,description TEXT,date DATE, id_category INTEGER, FOREIGN KEY(id_category) REFERENCES category(id_category))")
+        connection.close()
         
     except ConnectionError as error:
         print(error)
