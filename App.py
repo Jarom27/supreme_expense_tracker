@@ -1,24 +1,23 @@
-from kivy.app import App
-from kivy.lang import Builder
-from kivy.uix.label import Label
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.widget import Widget
-from kivy.uix.tabbedpanel import TabbedPanel
-from kivy.core.window import Window
-from database.CategoryHelper import *
-Builder.load_file("./views/app.kv")
+from tkinter import *
+from tkinter import ttk
+from views.DailyFrame import DailyFrame
 
-
-class RootWidget(TabbedPanel):
-    pass
-class MyApp(App):
-    def build(self):
-        Window.set_title("Supreme Expense Tracker")
-        Window.clearcolor = (13/255,2/255,33/255,1)
-        return RootWidget()
+class App(Frame):
+    def __init__(self,root):
+        super().__init__(root)
+        self.notebook = ttk.Notebook(self)
+        self.daily_frame = DailyFrame()
+        self.notebook.add(self.daily_frame,text = "Daily", padding = 20)
+        self.notebook.pack(padx=10,pady=10)
+        self.pack()
 
 def main():
-    MyApp().run()
+    root = Tk()
+    root.title("Supreme Expense Tracker")
+    root.geometry("400x600")
+    app = App(root)
+    app.mainloop()
+
 
 if __name__ == "__main__":
     main()

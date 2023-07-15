@@ -1,7 +1,8 @@
 class Expense:
-    def __init__(self, description, date, id_category):
+    def __init__(self,description, date,quantity, id_category):
         self.description = description
         self.date = date
+        self.quantity = quantity
         self.id_category = id_category
 
     def __conform__(self, protocol):
